@@ -5,9 +5,13 @@ _provided by Brad Traversy on Udemy platform_ <br><br>
 <img height="50" src="https://user-images.githubusercontent.com/25181517/183897015-94a058a6-b86e-4e42-a37f-bf92061753e5.png">
 <img height="50" src="https://user-images.githubusercontent.com/25181517/183568594-85e280a7-0d7e-4d1a-9028-c8c2209e073c.png">
 <br>
+Since this is a complete full stack MERN project, the tabel of contents also presents the project development process.
 #### Table of Contents
-1. [Redux For Beginners](#anchor_1)<br/>
-2. [jQuery](#anchor_14)<br/>
+1. [Express and MongoDB Setup](#anchor_1)<br/>
+1. [Redux For Beginners](#anchor_999)<br/>
 
-## Redux For Beginners<a name="anchor_1"></a>
+## Express and MongoDB Setup<a name="anchor_1"></a>
+
+
+## Redux For Beginners<a name="anchor_999"></a>
 More details need to access this video: [Redux For Beginners | React Redux Tutorial](https://www.youtube.com/watch?v=CVpUuw9XSjY)
