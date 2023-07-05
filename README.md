@@ -11,7 +11,13 @@ Since this is a complete full stack MERN project, the tabel of contents also pre
 1. [Redux For Beginners](#anchor_999)<br/>
 
 ## Express and MongoDB Setup<a name="anchor_1"></a>
-
+- MongoDB Atlas admin
+    ```
+    signin-email: jiexiaoranca@gmail.com
+    Username: admin-shawn
+    Password: shawn990610
+    ```
+- sss
 
 ## Redux For Beginners<a name="anchor_999"></a>
 More details need to access this video: [Redux For Beginners | React Redux Tutorial](https://www.youtube.com/watch?v=CVpUuw9XSjY)
