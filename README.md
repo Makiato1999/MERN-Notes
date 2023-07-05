@@ -5,9 +5,10 @@ _provided by Brad Traversy on Udemy platform_ <br><br>
 <img height="50" src="https://user-images.githubusercontent.com/25181517/183897015-94a058a6-b86e-4e42-a37f-bf92061753e5.png">
 <img height="50" src="https://user-images.githubusercontent.com/25181517/183568594-85e280a7-0d7e-4d1a-9028-c8c2209e073c.png">
 <br>
-Since this is a complete full stack MERN project, the tabel of contents also presents the project development process.
+Since this is a complete full stack MERN project, the tabel of contents also presents the project development sequential process.
 #### Table of Contents
 1. [Express and MongoDB Setup](#anchor_1)<br/>
+1. [User API Routes & JWT Authentication](#anchor_2)<br/>
 1. [Redux For Beginners](#anchor_999)<br/>
 
 ## Express and MongoDB Setup<a name="anchor_1"></a>
@@ -17,7 +18,31 @@ Since this is a complete full stack MERN project, the tabel of contents also pre
     Username: admin-shawn
     Password: shawn990610
     ```
-- sss
+- npm for initialization
+
+    ```
+    npm i express express-validator bcryptjs config gravatar jsonwebtoken mongoose request 
+    ```
+    nodemon
+    ```
+    npm i -D nodemon concurrently 
+    ```
+- modify package.json, we will put react and react&node scripts here later
+    ```
+    ...
+    "scripts": {
+        "start": "node server",
+        "server": "nodemon server"
+    },
+    ...
+    ```
+    run server by ```npm run server```
+- set config folder for database connection 
+- set routes folder
+
+## User API Routes & JWT Authentication<a name="anchor_2"></a>
+- set models folder
+- 
 
 ## Redux For Beginners<a name="anchor_999"></a>
 More details need to access this video: [Redux For Beginners | React Redux Tutorial](https://www.youtube.com/watch?v=CVpUuw9XSjY)
