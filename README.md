@@ -41,8 +41,10 @@ Since this is a complete full stack MERN project, the tabel of contents also pre
 - set routes folder
 
 ## User API Routes & JWT Authentication<a name="anchor_2"></a>
-- set models folder
-- 
+- set models folder and initialize models
+- initialize Middleware for json
+- validation
+    official documentation: [express-validator]()
 
 ## Redux For Beginners<a name="anchor_999"></a>
 More details need to access this video: [Redux For Beginners | React Redux Tutorial](https://www.youtube.com/watch?v=CVpUuw9XSjY)
