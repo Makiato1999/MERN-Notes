@@ -28,7 +28,7 @@ router.post(
     const { name, email, password } = req.body;
 
     try {
-      // Check if user
+      // Check if user exists
       let user = await User.findOne({ email }).exec();
       if (user) {
         res.status(400).json({ errors: [{ msg: 'User already exists' }] });
@@ -46,7 +46,10 @@ router.post(
         password,
       });
       // Encrypt password
-
+      const salt = await bcrypt.genSalt(10);
+      user.password = await bcrypt.hash(password, salt);
+      // Save in database
+      await user.save();
       // Return jsonwebtoken
       res.send('User route');
     } catch (error) {

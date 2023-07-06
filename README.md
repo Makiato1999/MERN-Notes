@@ -37,7 +37,11 @@ Since this is a complete full stack MERN project, the tabel of contents also pre
     ...
     ```
     run server by ```npm run server```
-- set config folder for database connection 
+- set config folder for database connection
+    - where i can put my databaseName
+    ```
+    mongodb+srv://admin-shawn:<password>@cluster0.whfip5e.mongodb.net/databaseName?retryWrites=true&w=majority
+    ```
 - set routes folder
     - note: don't forget '/' before the route
 

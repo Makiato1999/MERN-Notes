@@ -6,7 +6,6 @@ const connectDB = async () => {
   try {
     await mongoose.connect(db, {
       useNewUrlParser: true,
-      useCreateIndex: true, // tells Mongoose to use the MongoDB driver's createIndex() function instead of the deprecated ensureIndex() function for index creation
     });
     console.log('MongoDB successed to connect');
   } catch (error) {
