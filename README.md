@@ -39,12 +39,18 @@ Since this is a complete full stack MERN project, the tabel of contents also pre
     run server by ```npm run server```
 - set config folder for database connection 
 - set routes folder
+    - note: don't forget '/' before the route
 
 ## User API Routes & JWT Authentication<a name="anchor_2"></a>
-- set models folder and initialize models
+- initialize models for database, set models folder and initialize models
 - initialize Middleware for json
-- validation
-    official documentation: [express-validator]()
+- validation input
+    - official documentation: [express-validator API](https://express-validator.github.io/docs/api/check)
+    - handle errors and send status code to client
+- check if user exists
+- get users gravatar by email
+- create user by request body
+- encrypt password
 
 ## Redux For Beginners<a name="anchor_999"></a>
 More details need to access this video: [Redux For Beginners | React Redux Tutorial](https://www.youtube.com/watch?v=CVpUuw9XSjY)
