@@ -55,6 +55,7 @@ Since this is a complete full stack MERN project, the tabel of contents also pre
 - get users gravatar by email
 - create user by request body
 - encrypt password
+- return jsonwebtoken by user id
 
 ## Redux For Beginners<a name="anchor_999"></a>
 More details need to access this video: [Redux For Beginners | React Redux Tutorial](https://www.youtube.com/watch?v=CVpUuw9XSjY)
