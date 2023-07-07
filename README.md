@@ -9,6 +9,7 @@ Since this is a complete full stack MERN project, the tabel of contents also pre
 #### Table of Contents
 1. [Express and MongoDB Setup](#anchor_1)<br/>
 1. [User API Routes & JWT Authentication](#anchor_2)<br/>
+1. [Profile API Routes](#anchor_3)<br/>
 1. [Redux For Beginners](#anchor_999)<br/>
 
 ## Express and MongoDB Setup<a name="anchor_1"></a>
@@ -48,8 +49,8 @@ Since this is a complete full stack MERN project, the tabel of contents also pre
 ## User API Routes & JWT Authentication<a name="anchor_2"></a>
 - set folder, initialize models for database
 - set config folder for db connection and default.json
-- validation input in routes/api/users.js
-    - official documentation: [express-validator API](https://express-validator.github.io/docs/api/check)
+- register
+    - validation input in routes/api/users.js (official documentation: [express-validator API](https://express-validator.github.io/docs/api/check))
     - handle errors and send status code to client
     - check if user exists
     - get users gravatar by email
@@ -61,7 +62,11 @@ Since this is a complete full stack MERN project, the tabel of contents also pre
     - check if not token
     - verify token 
 - put auth as middleware and get the auth user
-- sss
+- login
+    - almost simmilar to register, but we only focus on email and password, also, don't forget return token
+
+## Profile API Routes<a name="anchor_3"></a>
+- ssss
 
 ## Redux For Beginners<a name="anchor_999"></a>
 More details need to access this video: [Redux For Beginners | React Redux Tutorial](https://www.youtube.com/watch?v=CVpUuw9XSjY)
