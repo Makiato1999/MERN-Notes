@@ -42,20 +42,26 @@ Since this is a complete full stack MERN project, the tabel of contents also pre
     ```
     mongodb+srv://admin-shawn:<password>@cluster0.whfip5e.mongodb.net/databaseName?retryWrites=true&w=majority
     ```
-- set routes folder
+- set routes folder for all pages, update the routes in server
     - note: don't forget '/' before the route
 
 ## User API Routes & JWT Authentication<a name="anchor_2"></a>
-- initialize models for database, set models folder and initialize models
-- initialize Middleware for json
-- validation input
+- set folder, initialize models for database
+- set config folder for db connection and default.json
+- validation input in routes/api/users.js
     - official documentation: [express-validator API](https://express-validator.github.io/docs/api/check)
     - handle errors and send status code to client
-- check if user exists
-- get users gravatar by email
-- create user by request body
-- encrypt password
-- return jsonwebtoken by user id
+    - check if user exists
+    - get users gravatar by email
+    - create user by request body
+    - encrypt password
+    - return jsonwebtoken by user id
+- set middelware folder for auth.js to parse the token
+    - get token from header
+    - check if not token
+    - verify token 
+- put auth as middleware and get the auth user
+- sss
 
 ## Redux For Beginners<a name="anchor_999"></a>
 More details need to access this video: [Redux For Beginners | React Redux Tutorial](https://www.youtube.com/watch?v=CVpUuw9XSjY)
