@@ -67,7 +67,14 @@ Since this is a complete full stack MERN project, the tabel of contents also pre
 
 ## Profile API Routes<a name="anchor_3"></a>
 - initialize Profile model, join User model to Profile model
-- 
+- get current user profile
+    ```
+    const profile = await Profile.findOne({ user: req.user.id }).populate(
+      'user',
+      ['name', 'avatar']
+    );
+    ```
+- check the POST input
 
 ## Redux For Beginners<a name="anchor_999"></a>
 More details need to access this video: [Redux For Beginners | React Redux Tutorial](https://www.youtube.com/watch?v=CVpUuw9XSjY)
