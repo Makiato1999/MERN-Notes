@@ -47,8 +47,8 @@ Since this is a complete full stack MERN project, the tabel of contents also pre
     - note: don't forget '/' before the route
 
 ## User API Routes & JWT Authentication<a name="anchor_2"></a>
-- set folder, initialize models for database
 - set config folder for db connection and default.json
+- set model folder, initialize User model for database
 - register
     - validation input in routes/api/users.js (official documentation: [express-validator API](https://express-validator.github.io/docs/api/check))
     - handle errors and send status code to client
@@ -66,7 +66,8 @@ Since this is a complete full stack MERN project, the tabel of contents also pre
     - almost simmilar to register, but we only focus on email and password, also, don't forget return token
 
 ## Profile API Routes<a name="anchor_3"></a>
-- ssss
+- initialize Profile model, join User model to Profile model
+- 
 
 ## Redux For Beginners<a name="anchor_999"></a>
 More details need to access this video: [Redux For Beginners | React Redux Tutorial](https://www.youtube.com/watch?v=CVpUuw9XSjY)
