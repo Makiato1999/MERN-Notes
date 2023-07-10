@@ -92,17 +92,31 @@ router.post(
           { $set: profileFields },
           { new: true }
         );
+        return res.json(profile);
       } else {
         // Create
         profile = new Profile(profileFields);
         await profile.save();
+        res.json(profile);
       }
-      res.json(profile);
     } catch (error) {
       console.error(error.message);
       res.status(500).send('Server error');
     }
   }
 );
+
+// @route   GET api/profile
+// @desc    Get all profiles
+// @access  Public
+router.get('/', async (req, res) => {
+  try {
+    const profiles = await Profile.find().populate('user', ['name', 'avatar']);
+    res.json(profiles);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Sever error');
+  }
+});
 
 module.exports = router;

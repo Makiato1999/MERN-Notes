@@ -97,7 +97,13 @@ Since this is a complete full stack MERN project, the tabel of contents also pre
     ['name', 'avatar']
   );
   ```
-- check the POST input
+- update current user profile
+  - check the post
+  - destructure request body, buld up profile object, build socialmedia object in profile object
+  - look for a profile by the user(user id)
+    - if find it, update it
+    - or create a new profile
+- sss
 
 ## Redux For Beginners<a name="anchor_999"></a>
 
