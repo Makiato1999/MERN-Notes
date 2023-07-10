@@ -42,7 +42,7 @@ router.post(
   ],
   async (req, res) => {
     const errors = validationResult(req);
-    if (!errors.isEmpty()) {
+    if (errors.notEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
 
@@ -163,5 +163,28 @@ router.delete('/', auth, async (req, res) => {
     res.status(500).send('Sever error');
   }
 });
+
+// @route   PUT api/profile/experience
+// @desc    Add profile experience
+// @access  Private
+router.put(
+  '/experience',
+  [
+    auth,
+    [
+      check('title', 'Title is required').notEmpty(),
+      check('company', 'Company is required').notEmpty(),
+      check('from', 'From date is required').notEmpty(),
+    ],
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (errors.notEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    // Destructing
+  }
+);
 
 module.exports = router;
