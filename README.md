@@ -64,7 +64,7 @@ Since this is a complete full stack MERN project, the tabel of contents also pre
       - design model structure
 - API - Register user
   - `POST api/users`
-    - public, no need auth
+    > public, no need auth
   - validate input (official documentation: [express-validator API](https://express-validator.github.io/docs/api/check)), such as below
   ```javascript
   router.post(
@@ -127,13 +127,13 @@ Since this is a complete full stack MERN project, the tabel of contents also pre
       ```
 - API - Get auth user
   - `GET api/auth`
-    - private, need auth
+    > private, need auth
     - findById().select()
       - use select() because we don't need to show user's password
   - send user json as response
 - API - Login user
   - `POST api/auth`
-    - public, no need auth
+    > public, no need auth
   - almost simmilar to Register API, but we only focus on email and password
   - send token json as response
 
@@ -153,8 +153,8 @@ Since this is a complete full stack MERN project, the tabel of contents also pre
       ```
 - API - Get current user(me) profile
   - `GET api/profile/me`
-    - private, need auth
-      - after login/register we will have a valid token, then use it to get profile
+    > private, need auth
+    - after login/register we will have a valid token, then use it to get profile
   - we need auth as middleware to decode the token, such as below
   ```javascript
   router.post(
@@ -173,7 +173,7 @@ Since this is a complete full stack MERN project, the tabel of contents also pre
   - send profile json as response
 - API - Create/Update user profile by user(user id)
   - `POST api/profile`
-    - private, need auth
+    > private, need auth
   - check the user input
   - destructure request body, buld up profile object, build socialmedia object in profile object
   - findOne()
@@ -182,22 +182,22 @@ Since this is a complete full stack MERN project, the tabel of contents also pre
   - send profile json as response
 - API - Get all profiles
   - `GET api/profile`
-    - public, no need auth
+    > public, no need auth
   - find().populate()
   - send profiles json as response
 - API - Get profile by user(user id)
   - `GET api/profile/user/:user_id`
-    - public, no need auth
+    > public, no need auth
   - findOne().populate()
   - send profile json as response
 - API - Delete profile, user & posts
   - `DELETE api/profile/user/:user_id`
-    - private, need auth
+    > private, need auth
   - findOneAndRemove() for both profile and user
   - send {msg: 'User deleted' } json as response
 - API - Add profile experience
   - `PUT api/profile/experience`
-    - private, need auth
+    > private, need auth
   - handle the PUT request, such as below
     ```javascript
     const profile = await Profile.findOne({ user: req.user.id });
@@ -207,8 +207,8 @@ Since this is a complete full stack MERN project, the tabel of contents also pre
     ```
   - send profile json as response
 - API - Delete experience from profile
-  > `DELETE api/profile/experience/experience_id`
-    >> private, need auth
+  - `DELETE api/profile/experience/experience_id`
+    > private, need auth
   - findOne(), map(), look for remove index, such as below
     ```javascript
     // Get remove index
@@ -220,13 +220,13 @@ Since this is a complete full stack MERN project, the tabel of contents also pre
     ```
   - send profile json as response
 - API - Add profile education
-  > `PUT api/profile/education`
-  >> private, need auth
+  - `PUT api/profile/education`
+    > private, need auth
   - findOne(), unshift()
   - send profile json as response
 - API - Delete education from profile
-  > `DELETE api/profile/education/education_id`
-  >> private, need auth
+  - `DELETE api/profile/education/education_id`
+    > private, need auth
   - findOne(), map(), look for remove index
   - send profile json as response
 - API - 
