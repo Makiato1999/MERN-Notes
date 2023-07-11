@@ -94,7 +94,7 @@ Since this is a complete full stack MERN project, the tabel of contents also pre
     const salt = await bcrypt.genSalt(10);
     user.password = await bcrypt.hash(password, salt);
     ```
-    - return jsonwebtoken 
+    - return jsonwebtoken
       - add customized token secrect key in config.js
       - secret key(in config.js) used to sign the token
     ```
@@ -113,7 +113,7 @@ Since this is a complete full stack MERN project, the tabel of contents also pre
       }
     );
     ```
-  - send token json as response 
+  - send token json as response
 - Middleware
   - create middelware folder
     - set auth.js, parse the token
@@ -126,16 +126,16 @@ Since this is a complete full stack MERN project, the tabel of contents also pre
       next();
       ```
 - API - Get auth user
-  - ```GET api/auth```
+  - `GET api/auth`
     - private, need auth
     - findById().select()
       - use select() because we don't need to show user's password
-  - send user json as response 
+  - send user json as response
 - API - Login user
-  - ```POST api/auth```
+  - `POST api/auth`
     - public, no need auth
   - almost simmilar to Register API, but we only focus on email and password
-  - send token json as response 
+  - send token json as response
 
 ## Profile API Routes<a name="anchor_3"></a>
 
@@ -169,7 +169,8 @@ Since this is a complete full stack MERN project, the tabel of contents also pre
   async (req, res) => {...
   ```
   - findOne().populate()
-  - send profile json as response 
+    - use populate() to get data from refer table(collection), here is User
+  - send profile json as response
 - API - Create/Update user profile by user(user id)
   - `POST api/profile`
     - private, need auth
@@ -178,24 +179,47 @@ Since this is a complete full stack MERN project, the tabel of contents also pre
   - findOne()
     - if successed to find it, update
     - if failed to find it, create
-  - send profile json as response 
+  - send profile json as response
 - API - Get all profiles
   - `GET api/profile`
     - public, no need auth
-  - find()
-  - send profiles json as response 
+  - find().populate()
+  - send profiles json as response
 - API - Get profile by user(user id)
   - `GET api/profile/user/:user_id`
     - public, no need auth
-  - findOne()
-  - send profile json as response 
+  - findOne().populate()
+  - send profile json as response
 - API - Delete profile, user & posts
   - `DELETE api/profile/user/:user_id`
     - private, need auth
   - findOneAndRemove() for both profile and user
-  - send {msg: 'User deleted' } json as response 
-- API - 
+  - send {msg: 'User deleted' } json as response
+- API - Add profile experience
   - `PUT api/profile/experience`
+    - private, need auth
+  - handle the PUT request, such as below
+    ```
+    const profile = await Profile.findOne({ user: req.user.id });
+    profile.experience.unshift(newExperience);
+    await profile.save();
+    ...
+    ```
+  - send profile json as response
+- API - Delete experience from profile
+  - `DELETE api/profile/experience/experience_id`
+    - private, need auth
+  - findOne(), map(), look for remove index, such as below
+    ```
+    // Get remove index
+    const removeIndex = profile.experience.map((item) => {
+      return item.id === req.params.experience_id ? item.id : null;
+    });
+    profile.experience.splice(removeIndex, 1);
+    await profile.save();
+    ```
+  - send profile json as response
+- API - 
 
 ## Redux For Beginners<a name="anchor_999"></a>
 
