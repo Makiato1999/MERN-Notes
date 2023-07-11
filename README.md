@@ -55,29 +55,107 @@ Since this is a complete full stack MERN project, the tabel of contents also pre
 
 ## User API Routes & JWT Authentication<a name="anchor_2"></a>
 
-- set config folder for db connection and default.json
-- set model folder, initialize User model for database
-- register
-  - validation input in routes/api/users.js (official documentation: [express-validator API](https://express-validator.github.io/docs/api/check))
-  - handle errors and send status code to client
+- Database initialization
+  - create config folder
+    - set default.json, save cloud database URI
+    - set db.js, implement connection
+  - create model folder
+    - set model(User.js)
+      - design model structure
+- API - Register user
+  - `POST api/users`
+    - public, no need auth
+  - validate input (official documentation: [express-validator API](https://express-validator.github.io/docs/api/check)), such as below
+  ```
+  router.post(
+  '/',
+  [
+    check('name', 'Name is required').notEmpty(),
+    check('email', 'Email is invalid').isEmail(),
+    check(
+      'password',
+      'Please enter a password with 6 or more characters'
+    ).isLength({ min: 6 }),
+  ],
+  ...
+  ```
+  - handle errors and send status code to client, such as below
+  ```
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  ```
   - check if user exists
-  - get users gravatar by email
-  - create user by request body
-  - encrypt password
-  - return jsonwebtoken by user id
-- set middelware folder for auth.js to parse the token
-  - get token from header
-  - check if not token
-  - verify token
-- put auth as middleware and get the auth user
-- login
-  - almost simmilar to register, but we only focus on email and password, also, don't forget return token
+    - get users gravatar by email
+    - create user by request body
+    - encrypt password
+    ```
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(password, salt);
+    ```
+    - return jsonwebtoken 
+      - add customized token secrect key in config.js
+      - secret key(in config.js) used to sign the token
+    ```
+    const payload = {
+        user: {
+          id: user._id,
+        },
+      };
+    jwt.sign(
+      payload,
+      config.get('jwtToken'),
+      { expiresIn: 360000 },
+      (error, token) => {
+        if (error) throw error;
+        res.json({ token });
+      }
+    );
+    ```
+  - send token json as response 
+- Middleware
+  - create middelware folder
+    - set auth.js, parse the token
+      - get token from header
+      - check if not token
+      - verify token, such as below
+      ```
+      const decoded = jwt.verify(token, config.get('jwtToken'));
+      req.user = decoded.user;
+      next();
+      ```
+- API - Get auth user
+  - ```GET api/auth```
+    - private, need auth
+    - findById().select()
+      - use select() because we don't need to show user's password
+  - send user json as response 
+- API - Login user
+  - ```POST api/auth```
+    - public, no need auth
+  - almost simmilar to Register API, but we only focus on email and password
+  - send token json as response 
 
 ## Profile API Routes<a name="anchor_3"></a>
 
-- initialize Profile model, join User model to Profile model
-- get current user profile (after login/register we will have a valid token, then use it to get profile)
-  - we need auth as middleware to decode the token
+- Database operations
+  - goto model folder
+    - set model(Profile.js)
+      - join User model to Profile model, such as below
+      ```
+      const ProfileSchema = new mongoose.Schema({
+        user: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'user',
+      },
+      ...
+      ```
+- API - Get current user(me) profile
+  - `GET api/profile/me`
+    - private, need auth
+      - after login/register we will have a valid token, then use it to get profile
+  - we need auth as middleware to decode the token, such as below
   ```
   router.post(
   '/',
@@ -90,22 +168,34 @@ Since this is a complete full stack MERN project, the tabel of contents also pre
   ],
   async (req, res) => {...
   ```
-  - find profile database
-  ```
-  const profile = await Profile.findOne({ user: req.user.id }).populate(
-    'user',
-    ['name', 'avatar']
-  );
-  ```
-- create/update user profile by user(user id)
-  - check the post
+  - findOne().populate()
+  - send profile json as response 
+- API - Create/Update user profile by user(user id)
+  - `POST api/profile`
+    - private, need auth
+  - check the user input
   - destructure request body, buld up profile object, build socialmedia object in profile object
   - findOne()
     - if successed to find it, update
     - if failed to find it, create
-- get all profiles
-- get profile by user(user id)
-- 
+  - send profile json as response 
+- API - Get all profiles
+  - `GET api/profile`
+    - public, no need auth
+  - find()
+  - send profiles json as response 
+- API - Get profile by user(user id)
+  - `GET api/profile/user/:user_id`
+    - public, no need auth
+  - findOne()
+  - send profile json as response 
+- API - Delete profile, user & posts
+  - `DELETE api/profile/user/:user_id`
+    - private, need auth
+  - findOneAndRemove() for both profile and user
+  - send {msg: 'User deleted' } json as response 
+- API - 
+  - `PUT api/profile/experience`
 
 ## Redux For Beginners<a name="anchor_999"></a>
 
