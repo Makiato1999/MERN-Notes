@@ -66,7 +66,7 @@ Since this is a complete full stack MERN project, the tabel of contents also pre
   - `POST api/users`
     - public, no need auth
   - validate input (official documentation: [express-validator API](https://express-validator.github.io/docs/api/check)), such as below
-  ```
+  ```javascript
   router.post(
   '/',
   [
@@ -80,7 +80,7 @@ Since this is a complete full stack MERN project, the tabel of contents also pre
   ...
   ```
   - handle errors and send status code to client, such as below
-  ```
+  ```javascript
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
@@ -90,14 +90,14 @@ Since this is a complete full stack MERN project, the tabel of contents also pre
     - get users gravatar by email
     - create user by request body
     - encrypt password
-    ```
+    ```javascript
     const salt = await bcrypt.genSalt(10);
     user.password = await bcrypt.hash(password, salt);
     ```
     - return jsonwebtoken
       - add customized token secrect key in config.js
       - secret key(in config.js) used to sign the token
-    ```
+    ```javascript
     const payload = {
         user: {
           id: user._id,
@@ -120,7 +120,7 @@ Since this is a complete full stack MERN project, the tabel of contents also pre
       - get token from header
       - check if not token
       - verify token, such as below
-      ```
+      ```javascript
       const decoded = jwt.verify(token, config.get('jwtToken'));
       req.user = decoded.user;
       next();
@@ -143,7 +143,7 @@ Since this is a complete full stack MERN project, the tabel of contents also pre
   - goto model folder
     - set model(Profile.js)
       - join User model to Profile model, such as below
-      ```
+      ```javascript
       const ProfileSchema = new mongoose.Schema({
         user: {
           type: mongoose.Schema.Types.ObjectId,
@@ -156,7 +156,7 @@ Since this is a complete full stack MERN project, the tabel of contents also pre
     - private, need auth
       - after login/register we will have a valid token, then use it to get profile
   - we need auth as middleware to decode the token, such as below
-  ```
+  ```javascript
   router.post(
   '/',
   [
@@ -199,7 +199,7 @@ Since this is a complete full stack MERN project, the tabel of contents also pre
   - `PUT api/profile/experience`
     - private, need auth
   - handle the PUT request, such as below
-    ```
+    ```javascript
     const profile = await Profile.findOne({ user: req.user.id });
     profile.experience.unshift(newExperience);
     await profile.save();
@@ -210,7 +210,7 @@ Since this is a complete full stack MERN project, the tabel of contents also pre
   - `DELETE api/profile/experience/experience_id`
     - private, need auth
   - findOne(), map(), look for remove index, such as below
-    ```
+    ```javascript
     // Get remove index
     const removeIndex = profile.experience.map((item) => {
       return item.id === req.params.experience_id ? item.id : null;
@@ -218,6 +218,16 @@ Since this is a complete full stack MERN project, the tabel of contents also pre
     profile.experience.splice(removeIndex, 1);
     await profile.save();
     ```
+  - send profile json as response
+- API - Add profile education
+  - `PUT api/profile/education`
+    - private, need auth
+  - findOne(), unshift()
+  - send profile json as response
+- API - Delete education from profile
+  > `DELETE api/profile/education/education_id`
+    >> private, need auth
+  - findOne(), map(), look for remove index
   - send profile json as response
 - API - 
 
