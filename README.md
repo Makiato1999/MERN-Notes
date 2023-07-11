@@ -207,8 +207,8 @@ Since this is a complete full stack MERN project, the tabel of contents also pre
     ```
   - send profile json as response
 - API - Delete experience from profile
-  - `DELETE api/profile/experience/experience_id`
-    - private, need auth
+  > `DELETE api/profile/experience/experience_id`
+    >> private, need auth
   - findOne(), map(), look for remove index, such as below
     ```javascript
     // Get remove index
@@ -220,13 +220,13 @@ Since this is a complete full stack MERN project, the tabel of contents also pre
     ```
   - send profile json as response
 - API - Add profile education
-  - `PUT api/profile/education`
-    - private, need auth
+  > `PUT api/profile/education`
+  >> private, need auth
   - findOne(), unshift()
   - send profile json as response
 - API - Delete education from profile
   > `DELETE api/profile/education/education_id`
-    >> private, need auth
+  >> private, need auth
   - findOne(), map(), look for remove index
   - send profile json as response
 - API - 
