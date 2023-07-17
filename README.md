@@ -13,6 +13,7 @@ Since this is a complete full stack MERN project, the tabel of contents also pre
 1. [Express and MongoDB Setup](#anchor_1)<br/>
 1. [User API Routes & JWT Authentication](#anchor_2)<br/>
 1. [Profile API Routes](#anchor_3)<br/>
+1. [Post API Routes](#anchor_4)<br/>
 1. [Redux For Beginners](#anchor_999)<br/>
 
 ## Express and MongoDB Setup<a name="anchor_1"></a>
@@ -99,10 +100,10 @@ Since this is a complete full stack MERN project, the tabel of contents also pre
       - secret key(in config.js) used to sign the token
     ```javascript
     const payload = {
-        user: {
-          id: user._id,
-        },
-      };
+      user: {
+        id: user._id,
+      },
+    };
     jwt.sign(
       payload,
       config.get('jwtToken'),
@@ -229,7 +230,21 @@ Since this is a complete full stack MERN project, the tabel of contents also pre
     > private, need auth
   - findOne(), map(), look for remove index
   - send profile json as response
-- API - 
+
+## Post API Routes<a name="anchor_4"></a>
+- Database operations
+  - goto model folder
+    - set model(Post.js)
+      - join User model to Post model, such as below
+      ```javascript
+      const PostSchema = new mongoose.Schema({
+      user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'users',
+      },
+      ...
+      ```
+- API - Get current user(me) profile
 
 ## Redux For Beginners<a name="anchor_999"></a>
 
