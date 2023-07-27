@@ -45,6 +45,7 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
+    // destructure request body
     const {
       company,
       website,
@@ -62,7 +63,7 @@ router.post(
 
     // Build profile object
     const profileFields = {};
-    profileFields.user = req.user.id;
+    profileFields.user = req.user.id; // get req.user.id by middleware/auth.js
     if (company) profileFields.company = company;
     if (website) profileFields.website = website;
     if (location) profileFields.location = location;
@@ -72,7 +73,7 @@ router.post(
     if (skills) {
       profileFields.skills = skills.split(',').map((skill) => {
         return skill.trim();
-      });
+      }); // use map instead of traversing by foreach loop
     }
     // Buid socialmedia object in profile object
     profileFields.socialmedia = {};
@@ -82,6 +83,7 @@ router.post(
     if (instagram) profileFields.socialmedia.instagram = instagram;
     if (linkedin) profileFields.socialmedia.linkedin = linkedin;
 
+    // DB operation 
     try {
       let profile = await Profile.findOne({ user: req.user.id });
       if (profile) {
@@ -110,6 +112,8 @@ router.post(
 // @access  Public
 router.get('/', async (req, res) => {
   try {
+    // postId is the ID of the post you want to find. 
+    // populate() method tells mongoose to fetch the related user information from the "User" collection and include only the 'name' and 'avatar' fields in the result. 
     const profiles = await Profile.find().populate('user', ['name', 'avatar']);
     res.json(profiles);
   } catch (error) {

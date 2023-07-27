@@ -158,19 +158,11 @@ Since this is a complete full stack MERN project, the tabel of contents also pre
     - after login/register we will have a valid token, then use it to get profile
   - we need auth as middleware to decode the token, such as below
   ```javascript
-  router.post(
-  '/',
-  [
-    auth,
-    [
-      check('status', 'Status is required').notEmpty(),
-      check('skills', 'Skills is required').notEmpty(),
-    ],
-  ],
-  async (req, res) => {...
+  router.get('/', auth, async (req, res) =>{...
   ```
-  - findOne().populate()
-    - use populate() to get data from refer table(collection), here is User
+  - findOne(postId).populate(user's attributes)
+    - postId is the ID of the post you want to find
+    - populate() method tells mongoose to fetch the related user information from the "User" collection and include only the 'name' and 'avatar' fields in the result 
   - send profile json as response
 - API - Create/Update user profile by user(user id)
   - `POST api/profile`
@@ -184,7 +176,9 @@ Since this is a complete full stack MERN project, the tabel of contents also pre
 - API - Get all profiles
   - `GET api/profile`
     > public, no need auth
-  - find().populate()
+  - find(postId).populate(user's attributes)
+    - postId is the ID of the post you want to find
+    - populate() method tells mongoose to fetch the related user information from the "User" collection and include only the 'name' and 'avatar' fields in the result 
   - send profiles json as response
 - API - Get profile by user(user id)
   - `GET api/profile/user/:user_id`
